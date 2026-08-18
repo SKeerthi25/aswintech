@@ -1,0 +1,6 @@
+# ASWIN TECH LTD Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://aswintechltd.co.uk/sitemap.xml
