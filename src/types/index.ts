@@ -64,7 +64,7 @@ export interface BlogPostItem {
 
 export interface CustomerReview {
   id: string;
-  author: string;
+  author?: string;
   location: string;
   serviceType: string;
   rating: number;

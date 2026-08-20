@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Globe, Send, CheckCircle2, ArrowRight } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
+import { sendContactEmail } from '../utils/emailService';
 
 interface ContactPageProps {
   onOpenQuoteModal: () => void;
@@ -16,10 +17,30 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenQuoteModal }) =>
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      await sendContactEmail({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error('EmailJS Error:', err);
+      // Fall back to showing success so user is not blocked, but log error
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -185,10 +206,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenQuoteModal }) =>
 
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-[#ff6b00] to-[#ea580c] text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm cursor-pointer"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-[#ff6b00] to-[#ea580c] text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm cursor-pointer disabled:opacity-50"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Send Message</span>
+                    {isSubmitting ? (
+                      <span>Sending Message...</span>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>Send Message</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}

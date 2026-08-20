@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, CheckCircle2, Send, Upload, Phone, Mail, MapPin, Calendar, Clock, User, Building, FileText } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
+import { sendContactEmail } from '../utils/emailService';
 
 export const QuotePage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -19,13 +20,30 @@ export const QuotePage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      await sendContactEmail({
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        serviceRequired: formData.serviceRequired,
+        propertyType: formData.propertyType,
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime,
+        companyName: formData.companyName,
+        fileName: formData.fileName,
+        message: formData.description
+      });
       setSubmitted(true);
-    }, 1000);
+    } catch (err) {
+      console.error('EmailJS QuotePage error:', err);
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, Send, Upload, Shield, Calendar, Clock, Phone, Mail, User, Building, FileText } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
+import { sendContactEmail } from '../utils/emailService';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -27,14 +28,30 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, presele
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate submission delay
-    setTimeout(() => {
-      setIsSubmitting(false);
+    
+    try {
+      await sendContactEmail({
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        serviceRequired: formData.serviceRequired,
+        propertyType: formData.propertyType,
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime,
+        companyName: formData.companyName,
+        fileName: formData.fileName,
+        message: formData.description
+      });
       setSubmitted(true);
-    }, 1000);
+    } catch (err) {
+      console.error('EmailJS QuoteModal error:', err);
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

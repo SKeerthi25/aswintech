@@ -691,7 +691,6 @@ Always hire a certified electrician to test circuit load and fit compliant, doub
 export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-1',
-    author: 'David M.',
     location: 'Addiscombe, Croydon',
     serviceType: 'Residential CCTV Installation',
     rating: 5,
@@ -701,7 +700,6 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   },
   {
     id: 'rev-2',
-    author: 'Sarah K.',
     location: 'Purley, South London',
     serviceType: 'Lighting & Socket Fitting',
     rating: 5,
@@ -711,7 +709,6 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   },
   {
     id: 'rev-3',
-    author: 'Marcus B.',
     location: 'Central Croydon',
     serviceType: 'Commercial CCTV & Maintenance',
     rating: 5,
