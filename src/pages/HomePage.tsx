@@ -433,8 +433,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
               </div>
 
               <div className="pt-3 border-t border-white/5 text-xs">
-                <div className="font-bold text-white">{rev.author || 'Verified Client'}</div>
-                <div className="text-slate-400 text-[11px]">{rev.serviceType} • {rev.location}</div>
+                <div className="text-slate-400 text-[11px] font-semibold">{rev.serviceType} • {rev.location}</div>
               </div>
             </div>
           ))}
