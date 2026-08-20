@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, CheckCircle2, ArrowRight, Phone, Award, Users, Target, HeartHandshake, Lock } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/company';
+import { SafeImage } from '../components/SafeImage';
 
 interface AboutPageProps {
   onOpenQuoteModal: () => void;
@@ -62,11 +63,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenQuoteModal }) => {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-              <img 
+            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl min-h-[300px]">
+              <SafeImage 
                 src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" 
                 alt="ASWIN TECH LTD Engineer" 
-                className="w-full h-auto object-cover"
+                categoryTitle="ASWIN TECH Engineers"
+                fallbackType="general"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 bg-slate-950/80 backdrop-blur-md p-4 rounded-xl border border-white/10 text-xs">

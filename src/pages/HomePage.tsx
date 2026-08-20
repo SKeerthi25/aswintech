@@ -8,6 +8,7 @@ import { COMPANY_DETAILS, SERVICES_LIST, PROCESS_STEPS, INDUSTRIES, PROJECTS, FA
 import { HeroVisual } from '../components/HeroVisual';
 import { ServiceCard } from '../components/ServiceCard';
 import { CctvCoverageSimulator } from '../components/CctvCoverageSimulator';
+import { SafeImage } from '../components/SafeImage';
 
 interface HomePageProps {
   onOpenQuoteModal: (serviceName?: string) => void;
@@ -327,9 +328,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenQuoteModal }) => {
           {PROJECTS.slice(0, 3).map((proj) => (
             <div key={proj.id} className="bg-[#14161d] border border-white/10 rounded-2xl overflow-hidden group hover:border-amber-500/40 transition-all">
               <div className="relative aspect-video overflow-hidden">
-                <img 
+                <SafeImage 
                   src={proj.image} 
                   alt={proj.title} 
+                  categoryTitle={proj.title}
+                  fallbackType="project"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <span className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] uppercase font-bold px-2.5 py-1 rounded border border-white/10">

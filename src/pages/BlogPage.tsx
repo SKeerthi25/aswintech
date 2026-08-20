@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../data/company';
 import { Clock, Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
+import { SafeImage } from '../components/SafeImage';
 
 export const BlogPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -57,7 +58,7 @@ export const BlogPage: React.FC = () => {
             >
               <div>
                 <div className="relative aspect-video overflow-hidden">
-                  <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <SafeImage src={post.image} alt={post.title} categoryTitle={post.title} fallbackType="blog" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <span className={`absolute top-3 left-3 text-[10px] uppercase font-bold px-2.5 py-1 rounded border ${post.categoryColor}`}>
                     {post.category}
                   </span>

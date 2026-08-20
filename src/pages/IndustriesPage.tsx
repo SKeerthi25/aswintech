@@ -1,6 +1,7 @@
 import React from 'react';
 import { INDUSTRIES } from '../data/company';
 import { CheckCircle2, ArrowRight, Shield } from 'lucide-react';
+import { SafeImage } from '../components/SafeImage';
 
 interface IndustriesPageProps {
   onOpenQuoteModal: (serviceName?: string) => void;
@@ -32,7 +33,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ onOpenQuoteModal
             <div key={ind.id} className="bg-[#14161d] border border-white/10 rounded-2xl overflow-hidden hover:border-amber-500/40 transition-all group flex flex-col justify-between">
               <div>
                 <div className="relative aspect-[21/9] overflow-hidden">
-                  <img src={ind.image} alt={ind.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <SafeImage src={ind.image} alt={ind.title} categoryTitle={ind.title} fallbackType="industry" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#14161d] via-slate-950/40 to-transparent" />
                   <h3 className="absolute bottom-4 left-6 text-2xl font-extrabold text-white">
                     {ind.title}

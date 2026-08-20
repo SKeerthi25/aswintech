@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Camera, Zap, CheckCircle2, ArrowRight, Phone, ShieldCheck, Wrench, ChevronRight, HelpCircle } from 'lucide-react';
 import { SERVICES_LIST, COMPANY_DETAILS } from '../data/company';
+import { SafeImage } from '../components/SafeImage';
 
 interface ServiceDetailPageProps {
   onOpenQuoteModal: (serviceName?: string) => void;
@@ -71,9 +72,11 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ onOpenQuot
 
             <div className="lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl aspect-video">
-                <img 
+                <SafeImage 
                   src={service.image} 
                   alt={service.title} 
+                  categoryTitle={service.title}
+                  fallbackType={service.category === 'cctv' ? 'cctv' : 'electrical'}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />

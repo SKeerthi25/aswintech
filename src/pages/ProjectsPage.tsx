@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PROJECTS } from '../data/company';
 import type { ProjectItem } from '../types';
 import { MapPin, Calendar, CheckCircle2, ArrowRight, X } from 'lucide-react';
+import { SafeImage } from '../components/SafeImage';
 
 interface ProjectsPageProps {
   onOpenQuoteModal: (serviceName?: string) => void;
@@ -69,9 +70,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onOpenQuoteModal }) 
             >
               <div>
                 <div className="relative aspect-video overflow-hidden">
-                  <img 
+                  <SafeImage 
                     src={proj.image} 
                     alt={proj.title} 
+                    categoryTitle={proj.title}
+                    fallbackType="project"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <span className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] uppercase font-bold px-2.5 py-1 rounded border border-white/10">
@@ -128,7 +131,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onOpenQuoteModal }) 
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-[#12141a] border border-white/10 rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden relative max-h-[85vh] flex flex-col">
             <div className="relative aspect-video overflow-hidden">
-              <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
+              <SafeImage src={selectedProject.image} alt={selectedProject.title} categoryTitle={selectedProject.title} fallbackType="project" className="w-full h-full object-cover" />
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-3 right-3 p-2 rounded-full bg-slate-950/80 text-white hover:bg-amber-500 hover:text-slate-950 transition-colors"

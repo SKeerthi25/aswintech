@@ -18,6 +18,7 @@ export const Footer: React.FC = () => {
               <img 
                 src="/logo.png" 
                 alt="ASWIN TECH LTD Logo" 
+                onError={(e) => (e.currentTarget.style.display = 'none')}
                 className="w-11 h-11 object-contain rounded-xl shadow-lg shadow-amber-500/20 border border-amber-500/30 bg-[#12141a]" 
               />
               <div className="flex flex-col">

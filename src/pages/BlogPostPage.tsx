@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { BLOG_POSTS } from '../data/company';
 import { Calendar, Clock, User, ArrowRight, ChevronRight, Tag } from 'lucide-react';
+import { SafeImage } from '../components/SafeImage';
 
 interface BlogPostPageProps {
   onOpenQuoteModal: () => void;
@@ -55,7 +56,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ onOpenQuoteModal }) 
       {/* Main Content Article */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-slate-300 leading-relaxed text-sm sm:text-base">
         <div className="rounded-2xl overflow-hidden border border-white/10 aspect-video shadow-2xl">
-          <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          <SafeImage src={post.image} alt={post.title} categoryTitle={post.title} fallbackType="blog" className="w-full h-full object-cover" />
         </div>
 
         <div className="bg-[#14161d] border border-white/10 rounded-2xl p-6 sm:p-10 space-y-6">

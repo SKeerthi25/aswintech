@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Camera, ShieldCheck, Eye, Wifi, Video, Lock, Radio, Server, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CctvCoverageSimulator } from '../components/CctvCoverageSimulator';
+import { SafeImage } from '../components/SafeImage';
 
 interface CctvSolutionsPageProps {
   onOpenQuoteModal: (serviceName?: string) => void;
@@ -153,7 +154,7 @@ export const CctvSolutionsPage: React.FC<CctvSolutionsPageProps> = ({ onOpenQuot
             <div key={cat.id} className="bg-[#14161d] border border-white/10 rounded-2xl overflow-hidden hover:border-amber-500/40 transition-all group flex flex-col justify-between">
               <div>
                 <div className="relative aspect-video overflow-hidden">
-                  <img src={cat.image} alt={cat.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <SafeImage src={cat.image} alt={cat.title} categoryTitle={cat.title} fallbackType="cctv" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-6 space-y-3">
                   <h3 className="font-bold text-white text-lg group-hover:text-amber-400 transition-colors">

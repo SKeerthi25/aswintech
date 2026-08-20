@@ -101,6 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuoteModal }) => {
               <img 
                 src="/logo.png" 
                 alt="ASWIN TECH LTD Logo" 
+                onError={(e) => (e.currentTarget.style.display = 'none')}
                 className="w-11 h-11 object-contain rounded-xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform border border-amber-500/30 bg-[#12141a]" 
               />
               <div className="flex flex-col">
